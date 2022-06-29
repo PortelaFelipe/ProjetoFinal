@@ -3,9 +3,8 @@
 	if(isset($_GET['c']))
 	{
 		$controler = ucfirst($_GET['c']);
-		$path_controler = "controler/$controler.php";
-		echo $path_controler;
-		
+		$path_controler = "controller/$controler.php";
+				
 		//verifica se o arquivo de controler existe
 		if(file_exists($path_controler))
 		{
@@ -22,7 +21,7 @@
 							
 				//verifica se o controlador possui uma funcao
 				if(is_callable(array($obj, $metodo))){
-					echo "eai amigo, beleza? existe a funçao";
+					
 					call_user_func_array(array($obj, $metodo),array());
 				}
 			
@@ -34,3 +33,16 @@
 
 
 ?>
+
+<!-- 
+
+Atualizar o arquivo no GitHub
+
+git add *
+git commit -m "Interface Grafica"
+git push -u origin main
+
+
+
+
+-->
