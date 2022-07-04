@@ -1,5 +1,7 @@
 <?php
 
+$base_url="http://localhost/portela/ProjetoFinalSemestre/index.php";
+
 	if(isset($_GET['c']))
 	{
 		$controler = ucfirst($_GET['c']);
@@ -29,10 +31,16 @@
 	}
 	
 
-
+ function base_url(){
+	 global $base_url;
+	 return $base_url;
+	 
+ }
 
 
 ?>
+
+ 
 
 <!-- 
 
@@ -43,6 +51,6 @@ git commit -m "Interface Grafica"
 git push -u origin main
 
 
-
+...ProjetoFinalSemestre/index.php?c=categoria
 
 -->

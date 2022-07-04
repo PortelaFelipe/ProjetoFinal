@@ -20,7 +20,7 @@
 	<header style="background-color: black;">
 		<div class="container text-white pt-3 pb-3">
 			<h1>Catálago do IF</h1>
-			<P>Aqui você encontra de quase tudo</p>
+			<P>Aqui você encontra de "quase" tudo</p>
 			
 			<Pre>
 				<b>
