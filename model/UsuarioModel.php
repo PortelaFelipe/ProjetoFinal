@@ -1,42 +1,41 @@
-
 <?php
 
 require_once "config/Conexao.php";
-// require "../config/Conexao.php";
 
-	class CategoriaModel{
+
+	class UsuarioModel{
 		
 		function __construct(){
 			$this->conexao = Conexao::getConnection();
 		}
 	
 		//funçao inserir	
-		function inserir($nome){
-			$sql = "INSERT INTO categoria (nome) values (?)";
+		function inserir($login, $senha){
+			$sql = "INSERT INTO usuario (login, senha) values (?,?)";
 			$comando= $this->conexao->prepare($sql);
-			$comando->bind_param("s", $nome);
+			$comando->bind_param("ss", $login,$senha);
 			$comando->execute();
 		}
 		
 		// funçao excluir		
 		function excluir($id){
-			$sql = "DELETE FROM categoria WHERE idcategoria = ?";
+			$sql = "DELETE FROM usuario WHERE idusuario = ?";
 			$comando= $this->conexao->prepare($sql);
 			$comando->bind_param("i", $id);
 			$comando->execute();
 		}
 		
 		// funçao atualizar		
-		function atualizar($id, $nome){
-			$sql = "UPDATE categoria SET nome=? WHERE idcategoria=?";
+		function atualizar($id, $login, $senha){
+			$sql = "UPDATE usuario SET login=?, senha=? WHERE idusuario=?";
 			$comando= $this->conexao->prepare($sql);
-			$comando->bind_param("si", $id,$nome);
+			$comando->bind_param("ssi", $login,$senha,$id);
 			$comando->execute();
 		}
 		
 		// funçao Buscar Todos	
 		function BuscarTodos(){
-			$sql = "SELECT * FROM categoria";
+			$sql = "SELECT * FROM usuario";
 			$comando= $this->conexao->prepare($sql);
 			if ($comando->execute()){
 				$resultado = $comando->get_result();
@@ -45,11 +44,23 @@ require_once "config/Conexao.php";
 			return null;
 		}
 		
-		// funçao Buscar por ID		
+		// funçao Buscar por	
 		function BuscarPorId($id){
-			$sql = "SELECT * FROM categoria WHERE idcategoria = ?";
+			$sql = "SELECT * FROM usuario WHERE idusuario = ?";
 			$comando= $this->conexao->prepare($sql);
 			$comando->bind_param("i",$id);
+			if ($comando->execute()){
+				$resultado = $comando->get_result();
+				return $resultado->fetch_assoc();
+			}
+			return null;
+		}	
+		
+		// funçao Buscar por	
+		function BuscarPorLogin($login){
+			$sql = "SELECT * FROM usuario WHERE idusuario = ?";
+			$comando= $this->conexao->prepare($sql);
+			$comando->bind_param("s",$login);
 			if ($comando->execute()){
 				$resultado = $comando->get_result();
 				return $resultado->fetch_assoc();

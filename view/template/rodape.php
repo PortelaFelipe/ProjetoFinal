@@ -1,15 +1,15 @@
-	<!-- FOOTER = RODAPE -->
+	<!-- FOOTER RODAPE -->
 	
 	
 	
 	
-<footer class="container-fluid pt-2 pb-2 "
-	style="background-color: black;">
+	<footer class="container-fluid pt-2 pb-1 "
+		style="background-color: black;">
 	
-		<center><p class="text-white">
+		<p class="text-center text-white">
 			Cátalogos do IF - Todos os direitos reservados
-			</P>
-		</center>
+		</P>
+		
 	</footer>
 	
 	

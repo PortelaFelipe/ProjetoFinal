@@ -1,41 +1,35 @@
 <?php
 
-$base_url="http://localhost/portela/ProjetoFinalSemestre/index.php";
+	$controlador_padrao = 'Categoria';
+	$controlador = ucfirst($_GET['c'] ?? $controlador_padrao);
+	$metodo = $_GET['m'] ?? 'index';
 
-	if(isset($_GET['c']))
+	$caminho_controlador = "controller/$controlador.php";
+
+
+$base_url= 'http://localhost/ProjetoFinalSemestre2/index.php';
+
+	if(file_exists($caminho_controlador))
 	{
-		$controler = ucfirst($_GET['c']);
-		$path_controler = "controller/$controler.php";
+		require $caminho_controlador;
+		$objController = new $controlador();
+		
+		$id = $_GET['id'] ?? null;
+		
+		//verifica se o controlador possui uma funcao
+			if(is_callable(array($objController, $metodo))){
 				
-		//verifica se o arquivo de controler existe
-		if(file_exists($path_controler))
-		{
-			require $path_controler;
-			
-			//verifica se foi enviada a variavel $_GET['m']
-			//que contém o método do controlador que desejo
-			
-			
-				$metodo = $_GET['m'] ?? "index";
-				
-				//cria o objeto controlador
-				$obj = new $controler();
-							
-				//verifica se o controlador possui uma funcao
-				if(is_callable(array($obj, $metodo))){
-					
-					call_user_func_array(array($obj, $metodo),array());
-				}
+			call_user_func_array(array($objController, $metodo),array($id ));
+			}
 			
 		}
-	}
+	
 	
 
- function base_url(){
-	 global $base_url;
-	 return $base_url;
-	 
- }
+ 			function base_url(){
+			 global $base_url;
+ 			 return $base_url;}
+	
 
 
 ?>
@@ -52,5 +46,5 @@ git push -u origin main
 
 
 ...ProjetoFinalSemestre/index.php?c=categoria
-
+segundo video 9:45
 -->
